@@ -6,3 +6,4 @@
   * Station Track Sensors
   * Slow Down Track Sensors (Placed way before the station to tell the train when to slow down)
   * Man on Track Sensors
+  * Tracks {Track1, Track2}
