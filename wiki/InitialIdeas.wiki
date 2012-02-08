@@ -1,0 +1,8 @@
+#summary One-sentence summary of this page.
+
+= Design (Safety Notes) =
+- Train Controllers
+- Train Door Controllers
+- Station Track Sensors
+- Slow Down Track Sensors (Placed way before the station to tell the train when to slow down)
+- Man on Track Sensors
