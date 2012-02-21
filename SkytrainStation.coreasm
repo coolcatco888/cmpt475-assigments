@@ -1,0 +1,178 @@
+CoreASM SkytrainStation
+
+use StandardPlugins
+use TimePlugin
+use MathPlugin
+
+enum Track = {track1, track2}
+enum TrackStatus = {empty, coming, stopping, stopped, leaving}
+enum DoorState = {open, closed}
+enum DoorDirection = {opening, closing}
+
+function trackStatus : Track -> TrackStatus 
+function doorState : Track -> DoorState
+function dir : Track -> Direction
+function timeToClose : Track -> Boolean
+function closeDeadline : Track -> TIME
+function safeToLeave : Track -> Boolean
+function moving : Track -> Boolean
+function leaveWaitTime : Track -> TIME
+function closedWaiting : Track -> Boolean
+
+universe Agents = {trackController, doorController, observer, environment}
+
+init InitRule 
+
+rule InitRule = par
+	dmin := 5000
+	waitTime := 2000
+	maxOpenTime := 10000
+	startTime := now
+	forall t in Track do 
+		par
+			trackStatus(t) := empty
+			doorState(t) := closed
+			timeToClose(t) := false
+			closeDeadline(t) := infinity
+			safeToLeave(t) := false
+			dir(t) := closing
+			moving(t) := false
+			leaveWaitTime(t) := infinity
+			closedWaiting(t) := false
+		endpar
+	program(trackController) := @TrackControl
+	program(doorController) := @DoorControl
+	program(observer) := @ObserverProgram
+	program(environment) := @EnvironmentProgram
+	program(self) := undef
+endpar
+
+rule TrackControl = 
+	par 
+		forall t in Track do 
+		par
+			SetDoorCloseDeadline(t)
+			SetLeaveWaitTime(t)
+			SignalOpenDoors(t)
+			SignalCloseDoors(t)
+			SignalLeave(t)
+			ClearDoorCloseDealine(t)
+			ClearLeaveWaitTime(t)
+		endpar
+	endpar
+
+rule SetLeaveWaitTime(x) = 
+	// Set the time that the train should wait until before departing
+	if closedWaiting(x) = true and leaveWaitTime(x) = infinity then
+		leaveWaitTime(x) := now + waitTime
+		
+	
+rule ClearLeaveWaitTime(x) =
+	// Clear train's departure deadline if the train has left the station
+	if trackStatus(x) != stopped and leaveWaitTime(x) < infinity then
+		leaveWaitTime(x) := infinity
+
+rule SetDoorCloseDeadline(x) =
+	// Set the time that the doors should close by
+	if closeDeadline(x) = infinity and dir(x) = opening then
+		closeDeadline(x) := now + maxOpenTime
+	
+rule ClearDoorCloseDealine(x) =
+	// If the train is leaving then reset the deadline for the doors to be closed
+	if trackStatus(x) = leaving and closeDeadline(x) < infinity then
+		closeDeadline(x) := infinity
+
+rule SignalOpenDoors(x) = 
+	// Signal the doors to be opened if it is safe to open them
+	// The doors should open "within two seconds of stopping" - here the doors open immediately after stopping
+	if trackStatus(x) = stopped and dir(x) = closing and closeDeadline(x) = infinity then
+		dir(x) := opening
+		
+rule SignalCloseDoors(x) =
+	// Close the door if the close deadline has been reached
+	if now > closeDeadline(x) then
+		dir(x) := closing
+
+rule SignalLeave(x) = 
+	par
+		// Begin train departure if it is safe to leave
+		if safeToLeave(x) = true then par
+			moving(x) := true
+			safeToLeave(x) := false
+			timeToClose(x) := false
+			closedWaiting(x) := false
+		endpar
+		else par
+			// Safe to leave if doors have been closed for at least two seconds
+			if doorState(x) = closed and now > leaveWaitTime(x) then
+				safeToLeave(x) := true
+		endpar
+	endpar
+
+rule DoorControl =  
+	par
+		forall t in Track do 
+		par
+			if dir(t) = opening and doorState(t) = closed then par
+				doorState(t) := open
+			endpar
+			// In the real implementation the doors should have sensors and determin when the doors are actually closed
+			// in case of someone obstructing the doors.
+			if dir(t) = closing and doorState(t) = open then par
+				doorState(t) := closed
+				closedWaiting(t) := true
+			endpar
+		endpar
+	endpar
+
+// The observer
+rule ObserverProgram = 
+	seqblock
+		print "Time: " + ((now - startTime) / 1000) + " seconds"
+		forall t in Track do
+			if trackStatus(t) = stopping or trackStatus(t) = stopped or trackStatus(t) = leaving then
+				print "Track " + t + " is " + trackStatus(t) + " (Doors: " + doorState(t) + ")" 
+			else 
+				print "Track " + t + " is " + trackStatus(t)
+		print ""
+	endseqblock
+
+// The environment
+rule EnvironmentProgram = 
+	choose t in Track do
+		par
+			// Send a train in at a random time
+			if trackStatus(t) = empty then 
+				if random < 0.05 then par
+					trackStatus(t) := coming
+					// At what time the train will pass the next sensor
+					passingTime(t) := now + 3000
+				endpar
+			
+			// When the train passes the next sensor it is told to slow down
+			if trackStatus(t) = coming then
+				if passingTime(t) < now then par
+					trackStatus(t) := stopping
+					passingTime(t) := now + 3000
+				endpar
+			
+			// The sensors tell the train to stop for 10 seconds
+			if trackStatus(t) = stopping then
+				if passingTime(t) < now then par
+					trackStatus(t) := stopped
+				endpar
+			
+			// This sensor detects if the train is leaving the station. The train is told to leave by the track controller
+			if trackStatus(t) = stopped and moving(t) = true then par
+				trackStatus(t) := leaving
+				passingTime(t) := now + 3000
+			endpar
+			
+			// When the train has passed the last track sensor on its way out
+			if trackStatus(t) = leaving then
+				if passingTime(t) < now then par
+					trackStatus(t) := empty
+					moving(t) := false
+				endpar
+				
+		endpar
