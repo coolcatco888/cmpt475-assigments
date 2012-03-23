@@ -1,0 +1,126 @@
+// CMPT 475 Course Project (Spring, '12)
+// Aparna Agarwal, 301087691
+// Cley Tang, 301116141 
+// James Wall, 301089955
+
+
+
+/*
+
+- isActive - initalize?
+
+nextMachine??
+
+output??
+
+more than one computations?
+*/
+
+CoreASM DistributedTerminationDetection
+
+use StandardPlugins
+use TimePlugin
+use MathPlugin
+
+enum Colour = {black, white}
+enum Token = {blackToken, whiteToken}
+
+enum Machine = {machine0, machine1, machine2, machine3, machine4, machine5, machine6, machine7, machine8}
+enum Computation = {comp1, comp2, comp3}
+
+function colour : Machine -> Colour
+function token : Machine -> Token
+function nextMachine: Machine -> Machine
+
+function isActive : Machine -> boolean
+function blackTokenEvent : Machine -> boolean
+function whiteTokenEvent : Machine -> boolean
+function sendMessageEvent : Machine -> boolean
+
+init InitRule
+
+rule InitRule = par
+	forall m in Machine do
+	par
+		print next
+		if m = machine0 then par
+			program(m) := @SupervisorMachineProgram
+			token(m) := blackToken
+			//nextMachine(m) := 
+		endpar
+		else par
+			program(m) := @RegularMachineProgram
+			InitializeMachine(m)
+			//nextMachine(m) := 
+		endpar
+		
+		if m = machine2 or m = machine4 or m = machine6 or m = machine7 then
+			isActive(m) := true
+		
+		colour(m) := white		
+	endpar
+	program(self) := undef
+endpar
+
+
+
+rule ForwardToken(t, m) = par
+	//token(m) := t
+	if t = blackToken or colour(m) = black then
+		blackTokenEvent(m) := true
+	else
+		whiteTokenEvent(m) := true
+endpar
+
+
+rule ReactOnEvents(m) = par
+	if blackTokenEvent(m) then
+		token(m) := blackToken
+	if whiteTokenEvent(m) then
+		token(m) := whiteToken
+	if sendMessageEvent(m) then
+		colour(m) := black
+endpar
+
+
+rule InitializeMachine(m) = par
+	token(m) := undef
+	colour(m) := white
+	blackTokenEvent(m) := false
+	whiteTokenEvent(m) := false
+	sendMessageEvent(m) := false
+endpar
+
+
+rule RegularMachineProgram(m) = par
+	ReactOnEvents(m)	
+	if (not isActive(m)) and (not token(m)) = undef then par
+		InitializeMachine(m)	// after if-else statement???
+		if colour(m) = black then
+			ForwardToken(blackToken, nextMachine(m))
+		else
+			ForwardToken(token(m), nextMachine(m))
+	endpar
+	
+	if isActive(m) then par
+		rand := random
+		if rand < 0.25 then
+			sendMessageEvent(m) := true
+		if rand > 0.5 then
+			isActive(m) := false
+	endpar
+	
+endpar
+
+
+rule SupervisorMachineProgram(m) = par
+	ReactOnEvents(m)
+	if (not isActive(m)) and (not token(m)) = undef then par
+		if colour(m) = white and token(m) = whiteToken then
+			print "Termination"
+		else par
+			InitializeMachine(m)
+			ForwardToken(whiteToken, nextMachine(m))
+		endpar
+	endpar
+endpar
