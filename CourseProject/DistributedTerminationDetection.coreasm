@@ -21,12 +21,14 @@ CoreASM DistributedTerminationDetection
 use StandardPlugins
 use TimePlugin
 use MathPlugin
+use List
 
 enum Colour = {black, white}
 enum Token = {blackToken, whiteToken}
 
 enum Machine = {machine0, machine1, machine2, machine3, machine4, machine5, machine6, machine7, machine8}
 enum Computation = {comp1, comp2, comp3}
+
 
 function colour : Machine -> Colour
 function token : Machine -> Token
@@ -37,35 +39,82 @@ function blackTokenEvent : Machine -> boolean
 function whiteTokenEvent : Machine -> boolean
 function sendMessageEvent : Machine -> boolean
 
+universe Agents = {supervisorMachine, regularMachine, observer}
+
 init InitRule
 
-rule InitRule = par
+rule InitRule = par	
+	startTime := now
 	forall m in Machine do
 	par
-		print next
-		if m = machine0 then par
-			program(m) := @SupervisorMachineProgram
+		if m = machine0 then par			
 			token(m) := blackToken
-			//nextMachine(m) := 
+			AssignNextMachine(m)
+			//nextMachine(m) := machine8		
 		endpar
-		else par
-			program(m) := @RegularMachineProgram
+		else par			
 			InitializeMachine(m)
-			//nextMachine(m) := 
+			AssignNextMachine(m)			
 		endpar
+		
+		//print nextMachine(m)
 		
 		if m = machine2 or m = machine4 or m = machine6 or m = machine7 then
 			isActive(m) := true
 		
 		colour(m) := white		
 	endpar
+	program(supervisorMachine) := @SupervisorMachineProgram
+	program(regularMachine) := @RegularMachineProgram
+	program(observer) := @ObserverProgram
 	program(self) := undef
 endpar
 
 
+rule ObserverProgram = par
+	print "Time: " + ((now - startTime) / 1000) + " seconds"
+	forall m in Machine with token(m) != undef do par
+		print m		
+	endpar
+endpar
+
+
+
+rule AssignNextMachine(m) = par
+	print m
+	if m = machine0 then par
+		//print "machine0"
+		nextMachine(m) := machine8
+		print nextMachine(machine0)
+	endpar
+	if m = machine1 then par
+		//print "machine1"
+		nextMachine(m) := machine0
+		print nextMachine(m)
+	endpar
+	if m = machine2 then
+		nextMachine(m) := machine1
+	if m = machine3 then
+		nextMachine(m) := machine2
+	if m = machine4 then
+		nextMachine(m) := machine3
+	if m = machine5 then
+		nextMachine(m) := machine4
+	if m = machine6 then
+		nextMachine(m) := machine5
+	if m = machine7 then
+		nextMachine(m) := machine6
+	if m = machine8 then
+		nextMachine(m) := machine7
+		
+	//print m
+	//print nextMachine(m)
+endpar
+
 
 rule ForwardToken(t, m) = par
 	//token(m) := t
+	print m
 	if t = blackToken or colour(m) = black then
 		blackTokenEvent(m) := true
 	else
@@ -92,35 +141,46 @@ rule InitializeMachine(m) = par
 endpar
 
 
-rule RegularMachineProgram(m) = par
-	ReactOnEvents(m)	
-	if (not isActive(m)) and (not token(m)) = undef then par
-		InitializeMachine(m)	// after if-else statement???
-		if colour(m) = black then
-			ForwardToken(blackToken, nextMachine(m))
-		else
-			ForwardToken(token(m), nextMachine(m))
-	endpar
-	
-	if isActive(m) then par
-		rand := random
-		if rand < 0.25 then
-			sendMessageEvent(m) := true
-		if rand > 0.5 then
-			isActive(m) := false
+rule RegularMachineProgram = par
+	forall m in Machine with m != machine0 do
+	par
+		//if m != machine0 then par
+			ReactOnEvents(m)	
+			if (not isActive(m)) and token(m) != undef then par
+				//InitializeMachine(m)	// after if-else statement???
+				if colour(m) = black then
+					ForwardToken(blackToken, nextMachine(m))
+				else
+					ForwardToken(token(m), nextMachine(m))
+				InitializeMachine(m)
+			endpar
+			
+			if isActive(m) then par
+				rand := random
+				if rand < 0.25 then
+					sendMessageEvent(m) := true
+				if rand > 0.5 then
+					isActive(m) := false
+			endpar
+		//endpar
+		
 	endpar
 	
 endpar
 
 
-rule SupervisorMachineProgram(m) = par
-	ReactOnEvents(m)
-	if (not isActive(m)) and (not token(m)) = undef then par
-		if colour(m) = white and token(m) = whiteToken then
-			print "Termination"
-		else par
-			InitializeMachine(m)
-			ForwardToken(whiteToken, nextMachine(m))
+rule SupervisorMachineProgram = par
+	choose m in Machine with m = machine0 do
+	par
+		ReactOnEvents(m)
+		if (not isActive(m)) and token(m) != undef then par
+			if colour(m) = white and token(m) = whiteToken then
+				print "Termination"
+			else par
+				InitializeMachine(m)
+				ForwardToken(whiteToken, nextMachine(m))
+				//InitializeMachine(m)
+			endpar
 		endpar
 	endpar
 endpar
