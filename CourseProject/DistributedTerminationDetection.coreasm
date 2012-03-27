@@ -4,18 +4,6 @@
 // James Wall, 301089955
 
 
-
-/*
-
-- isActive - initalize?
-
-nextMachine??
-
-output??
-
-more than one computations?
-*/
-
 CoreASM DistributedTerminationDetection
 
 use StandardPlugins
@@ -137,17 +125,14 @@ rule RegularMachineProgram =
 	forall m in Machine with m != machine0 do
 	par
 		seq
-			ReactOnEvents(m)	
-			//print m + "  regular  " +nextMachine(m) + "   " +token(m)
+			ReactOnEvents(m)
 		next
 			if (not isActive(m)) and token(m) != noToken then par
-				InitializeMachine(m)	// after if-else statement???
-				//print m + "  regular  " +nextMachine(m) + token(m)
+				InitializeMachine(m)
 				if colour(m) = black then
 					ForwardToken(m, blackToken, nextMachine(m))
 				else if colour(m) = white then
 					ForwardToken(m, token(m), nextMachine(m))
-				//InitializeMachine(m)
 			endpar
 			
 			if isActive(m) then par
@@ -167,7 +152,6 @@ rule SupervisorMachineProgram = seqblock
 	par
 		seq
 			ReactOnEvents(m)
-		//print m + "  super  " +nextMachine(m) + "   " +token(m)
 		next
 			if (not isActive(m)) and token(m) != noToken then par
 				if colour(m) = white and token(m) = whiteToken then seqblock
@@ -176,7 +160,6 @@ rule SupervisorMachineProgram = seqblock
 				else par
 					InitializeMachine(m)
 					ForwardToken(m, whiteToken, nextMachine(m))
-					//InitializeMachine(m)
 				endpar
 			endpar
 	endpar
