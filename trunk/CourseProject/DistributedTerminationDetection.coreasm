@@ -48,23 +48,18 @@ rule InitRule = par
 	par
 		if m = machine0 then par
 			colour(m) := white
-			//InitializeMachine(m)
 			token(m) := blackToken
 			AssignNextMachine(m)
+			isActive(m) := false
 		endpar
 		else par			
 			InitializeMachine(m)
-			//token(m) := noToken
 			AssignNextMachine(m)
-		endpar
-				
-		if m = machine2 or m = machine4 or m = machine6 or m = machine7 then
 			isActive(m) := true
-		else
-			isActive(m) := false
-		
+		endpar		
 		colour(m) := white		
 	endpar
+	
 	program(observer) := @ObserverProgram
 	program(supervisorMachine) := @SupervisorMachineProgram
 	program(regularMachine) := @RegularMachineProgram	
@@ -76,7 +71,7 @@ rule ObserverProgram = par
 	forall m in Machine with token(m) != noToken do seqblock
 		print "Time: " + ((now - startTime) / 1000) + " seconds"
 		print "Machine " + m + " holding " + token(m)
-		print "Machine" + m + " is of colour " + colour(m)
+		print "Machine " + m + ":- colour: " + colour(m) + "  , Active: " + isActive(m)
 		print ""
 	endseqblock
 endpar
@@ -106,24 +101,27 @@ rule AssignNextMachine(m) = par
 endpar
 
 
-rule ForwardToken(t, m) = seqblock
+rule ForwardToken(oldM, t, m) = seqblock
 	token(m) := t
 	//print "forwarded " +t +" to " + m 
 	if t = blackToken or colour(m) = black then
 		blackTokenEvent(m) := true
 	else
 		whiteTokenEvent(m) := true
+	
+	//InitializeMachine(oldM)
+	ObserverProgram
 endseqblock
 
 
-rule ReactOnEvents(m) = seqblock
+rule ReactOnEvents(m) = par
 	if blackTokenEvent(m) then
 		token(m) := blackToken
 	if whiteTokenEvent(m) then
 		token(m) := whiteToken
 	if sendMessageEvent(m) then
 		colour(m) := black
-endseqblock
+endpar
 
 
 rule InitializeMachine(m) = seqblock
@@ -146,9 +144,9 @@ rule RegularMachineProgram =
 				InitializeMachine(m)	// after if-else statement???
 				//print m + "  regular  " +nextMachine(m) + token(m)
 				if colour(m) = black then
-					ForwardToken(blackToken, nextMachine(m))
+					ForwardToken(m, blackToken, nextMachine(m))
 				else if colour(m) = white then
-					ForwardToken(token(m), nextMachine(m))
+					ForwardToken(m, token(m), nextMachine(m))
 				//InitializeMachine(m)
 			endpar
 			
@@ -156,7 +154,7 @@ rule RegularMachineProgram =
 				rand := random
 				if rand < 0.25 then
 					sendMessageEvent(m) := true
-				if rand > 0.5 then
+				if rand > 0.75 then
 					isActive(m) := false
 			endpar	
 		
@@ -172,13 +170,23 @@ rule SupervisorMachineProgram = seqblock
 		//print m + "  super  " +nextMachine(m) + "   " +token(m)
 		next
 			if (not isActive(m)) and token(m) != noToken then par
-				if colour(m) = white and token(m) = whiteToken then
-					print "Termination"
+				if colour(m) = white and token(m) = whiteToken then seqblock
+					ReportGlobalTermination
+				endseqblock
 				else par
 					InitializeMachine(m)
-					ForwardToken(whiteToken, nextMachine(m))
+					ForwardToken(m, whiteToken, nextMachine(m))
 					//InitializeMachine(m)
 				endpar
 			endpar
 	endpar
+endseqblock
+
+
+rule ReportGlobalTermination = seqblock
+	print "Termination"
+	program(observer) := undef
+	program(supervisorMachine) := undef
+	program(regularMachine) := undef
+	program(self) := undef
 endseqblock
