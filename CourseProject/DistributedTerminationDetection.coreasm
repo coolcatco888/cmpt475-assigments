@@ -54,17 +54,17 @@ rule InitRule = par
 			endpar	
 		endpar
 	endpar
-	
-	program(observer) := @ObserverProgram
+		
 	program(supervisorMachine) := @SupervisorMachineProgram
-	program(regularMachine) := @RegularMachineProgram	
+	program(regularMachine) := @RegularMachineProgram
+	program(observer) := @ObserverProgram	
 	program(self) := undef
 endpar
 
 
 rule ObserverProgram = par
 	forall c in Computation with (not terminated(c)) do seqblock		
-		print "Time: " + ((now - startTime) / 1000) + " seconds:\n"	
+		print "Time: " + ((now - startTime) / 1000) + " seconds:"	
 		choose m in Machine with token(m, c) != noToken do seqblock			
 			print "Computation " + c + ":"
 			print "Machine " + m + " holding " + token(m, c)
