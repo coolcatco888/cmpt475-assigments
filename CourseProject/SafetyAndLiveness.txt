@@ -1,0 +1,3 @@
+The purpose of this system is to:
+- terminate the entire system only when every machine is not running any computations (safety)
+- otherwise run computations (liveness)
