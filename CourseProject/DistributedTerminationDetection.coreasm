@@ -31,48 +31,53 @@ universe Agents = {supervisorMachine, regularMachine, observer}
 
 init InitRule
 
-rule InitRule = par	
+rule InitRule = seqblock	
 	startTime := now
-	//terminated(comp1) := false
-	//terminated(comp2) := true
-	//terminated(comp3) := true
+	terminated(comp1) := false
+	terminated(comp2) := true
+	terminated(comp3) := true
 	forall c in Computation do
-	par
-		terminated(c) := false
+	seqblock
+		//terminated(c) := false
 		forall m in Machine do
-		par
+		seqblock
 			if m = machine0 then seqblock
 				InitializeMachine(m, c)
 				token(m, c) := blackToken
 				AssignNextMachine(m)
-				isActive(m, c) := false
 			endseqblock
 			else par			
 				InitializeMachine(m, c)
 				AssignNextMachine(m)
-				isActive(m, c) := true
 			endpar	
-		endpar
-	endpar
-		
+			isActive(m, c) := true
+		endseqblock
+		PrintProgram(c)
+	endseqblock
+	
 	program(supervisorMachine) := @SupervisorMachineProgram
 	program(regularMachine) := @RegularMachineProgram
-	program(observer) := @ObserverProgram	
+	//program(observer) := @ObserverProgram	
 	program(self) := undef
-endpar
+endseqblock
 
-
+/*
 rule ObserverProgram = par
-	forall c in Computation with (not terminated(c)) do seqblock		
-		print "Time: " + ((now - startTime) / 1000) + " seconds:"	
-		choose m in Machine with token(m, c) != noToken do seqblock			
-			print "Computation " + c + ":"
-			print "Machine " + m + " holding " + token(m, c)
-			print "Machine " + m + ":- colour: " + colour(m, c) + "  , Active: " + isActive(m, c)
-			print ""
-		endseqblock
+	forall c in Computation with (not terminated(c)) do seqblock
+		PrintProgram(c)
 	endseqblock
 endpar
+*/
+
+rule PrintProgram(c) = seqblock
+	print "Time: " + ((now - startTime) / 1000) + " seconds:"	
+	choose m in Machine with token(m, c) != noToken do seqblock			
+		print "Computation " + c + ":"
+		print "Machine " + m + " holding " + token(m, c)
+		print "Machine " + m + ":- colour: " + colour(m, c) + "  , Active: " + isActive(m, c)
+		print ""
+	endseqblock
+endseqblock
 
 
 
@@ -99,26 +104,32 @@ rule AssignNextMachine(m) = par
 endpar
 
 
-rule ForwardToken(oldM, t, m, c) = seqblock
+rule ForwardToken(t, m, c) = seqblock
 	token(m, c) := t
-	//print "forwarded " +t +" to " + m 
 	if t = blackToken or colour(m, c) = black then
 		blackTokenEvent(m, c) := true
 	else
 		whiteTokenEvent(m, c) := true
-	
-	//InitializeMachine(oldM)
-	ObserverProgram
+		
+	PrintProgram(c)
 endseqblock
 
 
 rule ReactOnEvents(m, c) = par
 	if blackTokenEvent(m, c) then
 		token(m, c) := blackToken
+		
 	if whiteTokenEvent(m, c) then
 		token(m, c) := whiteToken
-	if sendMessageEvent(m, c) then
+		
+	if sendMessageEvent(m, c) then seqblock
 		colour(m, c) := black
+		choose mac1 in Machine with m != mac1 do seqblock
+			
+			if (not isActive(mac1, c)) then
+				isActive(mac1, c) := true
+		endseqblock
+	endseqblock
 endpar
 
 
@@ -139,22 +150,18 @@ rule RegularMachineProgram =
 			seq
 				ReactOnEvents(m, c)
 			next
-				if (not isActive(m, c)) and token(m, c) != noToken then par
+				if (not isActive(m, c)) and token(m, c) != noToken then seqblock
+					col := colour(m, c)
+					tok := token(m, c)					
 					InitializeMachine(m, c)
-					if colour(m, c) = black then
-						ForwardToken(m, blackToken, nextMachine(m), c)
-					else if colour(m, c) = white then
-						ForwardToken(m, token(m, c), nextMachine(m), c)
-				endpar
+					if col = black then
+						ForwardToken(blackToken, nextMachine(m), c)
+					else if col = white then
+						ForwardToken(tok, nextMachine(m), c)
+				endseqblock
 				
-				if isActive(m, c) then par
-					rand := random
-					if rand < 0.25 then
-						sendMessageEvent(m, c) := true
-					if rand > 0.75 then
-						isActive(m, c) := false
-				endpar	
-			
+				else
+					ActiveCondition(m, c)			
 		endpar
 	endpar	
 
@@ -171,23 +178,41 @@ rule SupervisorMachineProgram = seqblock
 				if (not isActive(m, c)) and token(m, c) != noToken then par
 					if colour(m, c) = white and token(m, c) = whiteToken then seqblock
 						terminated(c) := true
-						print "Computation " + c + " terminated"
-						//if not(choose c in Computation with (not terminated(c))) then par
-						//	ReportGlobalTermination
-						//endpar
+						print "Computation " + c + " terminated\n"
+						if (forall c in Computation holds terminated(c)) then par
+							ReportGlobalTermination
+						endpar
 					endseqblock
-					else par
+					else seqblock
 						InitializeMachine(m, c)
-						ForwardToken(m, whiteToken, nextMachine(m), c)
-					endpar
+						ForwardToken(whiteToken, nextMachine(m), c)
+					endseqblock
 				endpar
+				
+				else
+					ActiveCondition(m, c)
 		endpar
 	endpar
 endseqblock
 
 
+rule ActiveCondition(m, c) = seqblock
+	if isActive(m, c) then seqblock
+		rand := random
+		if rand < 0.05 then
+			sendMessageEvent(m, c) := true	
+				
+		if rand > 0.75 then seqblock
+			isActive(m, c) := false
+			if token(m, c) != noToken then
+				PrintProgram(c)
+		endseqblock
+	endseqblock
+endseqblock
+
+
 rule ReportGlobalTermination = seqblock
-	program(observer) := undef
+	//program(observer) := undef
 	program(supervisorMachine) := undef
 	program(regularMachine) := undef
 	program(self) := undef	
