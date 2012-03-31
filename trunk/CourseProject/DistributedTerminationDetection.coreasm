@@ -124,8 +124,7 @@ rule ReactOnEvents(m, c) = par
 		
 	if sendMessageEvent(m, c) then seqblock
 		colour(m, c) := black
-		choose mac1 in Machine with m != mac1 do seqblock
-			
+		choose mac1 in Machine with m != mac1 do seqblock					
 			if (not isActive(mac1, c)) then
 				isActive(mac1, c) := true
 		endseqblock
@@ -199,8 +198,9 @@ endseqblock
 rule ActiveCondition(m, c) = seqblock
 	if isActive(m, c) then seqblock
 		rand := random
-		if rand < 0.05 then
-			sendMessageEvent(m, c) := true	
+		if rand < 0.1 then par
+			sendMessageEvent(m, c) := true
+		endpar	
 				
 		if rand > 0.75 then seqblock
 			isActive(m, c) := false
