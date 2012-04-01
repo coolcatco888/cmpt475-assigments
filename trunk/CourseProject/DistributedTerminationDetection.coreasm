@@ -147,13 +147,13 @@ rule RegularMachineProgram =
 				ReactOnEvents(m, c)
 			next
 				if (not isActive(m, c)) and token(m, c) != noToken then seqblock
-					col := colour(m, c)
-					tok := token(m, c)					
+					col(c) := colour(m, c)
+					tok(c) := token(m, c)					
 					InitializeMachine(m, c)
-					if col = black then
+					if col(c) = black then
 						ForwardToken(blackToken, nextMachine(m), c)
-					else if col = white then
-						ForwardToken(tok, nextMachine(m), c)
+					else if col(c) = white then
+						ForwardToken(tok(c), nextMachine(m), c)
 				endseqblock
 				
 				else
