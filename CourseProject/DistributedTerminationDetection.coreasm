@@ -33,12 +33,9 @@ init InitRule
 
 rule InitRule = seqblock	
 	startTime := now
-	terminated(comp1) := false
-	terminated(comp2) := true
-	terminated(comp3) := true
 	forall c in Computation do
 	seqblock
-		//terminated(c) := false
+		terminated(c) := false
 		forall m in Machine do
 		seqblock
 			if m = machine0 then seqblock
@@ -167,6 +164,9 @@ rule RegularMachineProgram =
 
 
 rule SupervisorMachineProgram = seqblock
+	if (forall c in Computation holds terminated(c)) then par
+		ReportGlobalTermination
+	endpar
 	forall c in Computation with (not terminated(c)) do
 	par
 		choose m in Machine with m = machine0 do
@@ -177,10 +177,7 @@ rule SupervisorMachineProgram = seqblock
 				if (not isActive(m, c)) and token(m, c) != noToken then par
 					if colour(m, c) = white and token(m, c) = whiteToken then seqblock
 						terminated(c) := true
-						print "Computation " + c + " terminated\n"
-						if (forall c in Computation holds terminated(c)) then par
-							ReportGlobalTermination
-						endpar
+						print "Computation " + c + " terminated\n"						
 					endseqblock
 					else seqblock
 						InitializeMachine(m, c)
