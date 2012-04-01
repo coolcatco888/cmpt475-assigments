@@ -1,0 +1,1002 @@
+Time: 0 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: true
+
+Time: 0 seconds:
+Computation comp1:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: true
+
+Time: 0 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: true
+
+
+Time: 1.57 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 1.57 seconds:
+Computation comp1:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 1.57 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 2.022 seconds:
+Computation comp1:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: black  , Active: true
+
+Time: 2.022 seconds:
+Computation comp3:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: black  , Active: true
+
+Time: 2.878 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 3.084 seconds:
+Computation comp1:
+Machine machine10 holding blackToken
+Machine machine10:- colour: black  , Active: false
+
+
+Time: 3.084 seconds:
+Computation comp3:
+Machine machine10 holding blackToken
+Machine machine10:- colour: black  , Active: false
+
+
+Time: 3.084 seconds:
+Computation comp2:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: black  , Active: true
+
+Time: 3.32 seconds:
+Computation comp1:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 3.32 seconds:
+Computation comp2:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 3.32 seconds:
+Computation comp3:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 3.575 seconds:
+Computation comp3:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: true
+
+Time: 3.575 seconds:
+Computation comp2:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: true
+
+Time: 4.233 seconds:
+Computation comp2:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: false
+
+
+Time: 4.233 seconds:
+Computation comp3:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: false
+
+
+Time: 4.233 seconds:
+Computation comp1:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+
+Time: 5.271 seconds:
+Computation comp2:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+Time: 5.271 seconds:
+Computation comp1:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: false
+
+Time: 5.271 seconds:
+Computation comp3:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+Time: 6.104 seconds:
+Computation comp3:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+Time: 6.104 seconds:
+Computation comp1:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: true
+
+Time: 8.308 seconds:
+Computation comp3:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+
+Time: 8.308 seconds:
+Computation comp1:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+
+Time: 8.308 seconds:
+Computation comp2:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+
+Time: 8.54 seconds:
+Computation comp3:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+Time: 8.54 seconds:
+Computation comp2:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+Time: 8.54 seconds:
+Computation comp1:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+Time: 8.769 seconds:
+Computation comp3:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+
+Time: 8.769 seconds:
+Computation comp2:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+
+Time: 8.769 seconds:
+Computation comp1:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+
+Time: 9.605 seconds:
+Computation comp2:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+Time: 9.605 seconds:
+Computation comp3:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: false
+
+Time: 9.605 seconds:
+Computation comp1:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+Time: 9.832 seconds:
+Computation comp3:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: false
+
+
+Time: 9.832 seconds:
+Computation comp1:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: true
+
+Time: 9.832 seconds:
+Computation comp2:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: false
+
+Time: 10.286 seconds:
+Computation comp3:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+Time: 10.286 seconds:
+Computation comp2:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+Time: 10.286 seconds:
+Computation comp1:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+Time: 10.519 seconds:
+Computation comp3:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: true
+
+Time: 10.519 seconds:
+Computation comp2:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+Time: 10.959 seconds:
+Computation comp1:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+
+Time: 10.959 seconds:
+Computation comp3:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+
+Time: 10.959 seconds:
+Computation comp2:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+
+Time: 11.184 seconds:
+Computation comp2:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: false
+
+Time: 11.184 seconds:
+Computation comp3:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: false
+
+Time: 11.184 seconds:
+Computation comp1:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+Time: 11.414 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: true
+
+Time: 11.414 seconds:
+Computation comp1:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: true
+
+Time: 12.543 seconds:
+Computation comp1:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: false
+
+
+Time: 12.543 seconds:
+Computation comp2:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: false
+
+
+Time: 12.543 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 12.771 seconds:
+Computation comp1:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+Time: 12.771 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: true
+
+Time: 12.994 seconds:
+Computation comp3:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: black  , Active: true
+
+Time: 14.081 seconds:
+Computation comp3:
+Machine machine10 holding blackToken
+Machine machine10:- colour: black  , Active: false
+
+
+Time: 14.081 seconds:
+Computation comp1:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 14.081 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 14.331 seconds:
+Computation comp3:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 14.534 seconds:
+Computation comp3:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: true
+
+Time: 14.534 seconds:
+Computation comp1:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: black  , Active: true
+
+Time: 16.749 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 16.953 seconds:
+Computation comp2:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: black  , Active: true
+
+Time: 17.852 seconds:
+Computation comp1:
+Machine machine10 holding blackToken
+Machine machine10:- colour: black  , Active: false
+
+
+Time: 17.852 seconds:
+Computation comp2:
+Machine machine10 holding blackToken
+Machine machine10:- colour: black  , Active: false
+
+
+Time: 17.852 seconds:
+Computation comp3:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: false
+
+
+Time: 18.08 seconds:
+Computation comp1:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 18.08 seconds:
+Computation comp3:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+Time: 18.08 seconds:
+Computation comp2:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 18.512 seconds:
+Computation comp3:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+Time: 18.512 seconds:
+Computation comp2:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: true
+
+Time: 19.139 seconds:
+Computation comp2:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: false
+
+
+Time: 19.139 seconds:
+Computation comp1:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+
+Time: 19.139 seconds:
+Computation comp3:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+Time: 19.568 seconds:
+Computation comp2:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+Time: 19.568 seconds:
+Computation comp1:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: false
+
+Time: 19.568 seconds:
+Computation comp3:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+
+Time: 19.793 seconds:
+Computation comp3:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: true
+
+Time: 19.793 seconds:
+Computation comp2:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+Time: 19.793 seconds:
+Computation comp1:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: true
+
+Time: 20.021 seconds:
+Computation comp2:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: true
+
+Time: 20.264 seconds:
+Computation comp1:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+
+Time: 20.264 seconds:
+Computation comp2:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+
+Time: 20.264 seconds:
+Computation comp3:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: false
+
+
+Time: 20.492 seconds:
+Computation comp2:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: false
+
+Time: 20.492 seconds:
+Computation comp1:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+Time: 20.492 seconds:
+Computation comp3:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+Time: 22.253 seconds:
+Computation comp2:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: false
+
+
+Time: 22.253 seconds:
+Computation comp1:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+
+Time: 22.253 seconds:
+Computation comp3:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+
+Time: 22.907 seconds:
+Computation comp1:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+Time: 22.907 seconds:
+Computation comp3:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+Time: 22.907 seconds:
+Computation comp2:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+Time: 23.137 seconds:
+Computation comp1:
+Machine machine4 holding blackToken
+Machine machine4:- colour: black  , Active: false
+
+Time: 23.137 seconds:
+Computation comp3:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: true
+
+Time: 23.363 seconds:
+Computation comp1:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: true
+
+Time: 24.457 seconds:
+Computation comp1:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+
+Time: 24.457 seconds:
+Computation comp2:
+Machine machine3 holding blackToken
+Machine machine3:- colour: black  , Active: false
+
+
+Time: 24.457 seconds:
+Computation comp3:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: false
+
+
+Time: 24.686 seconds:
+Computation comp2:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: true
+
+Time: 24.686 seconds:
+Computation comp1:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+Time: 24.686 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: true
+
+Time: 24.907 seconds:
+Computation comp2:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+
+Time: 24.907 seconds:
+Computation comp1:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: false
+
+Time: 24.907 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: false
+
+
+Time: 25.157 seconds:
+Computation comp1:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: false
+
+Time: 25.157 seconds:
+Computation comp2:
+Machine machine1 holding blackToken
+Machine machine1:- colour: black  , Active: false
+
+Time: 25.157 seconds:
+Computation comp3:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: white  , Active: true
+
+Time: 25.379 seconds:
+Computation comp1:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: white  , Active: true
+
+Time: 25.591 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: true
+
+Time: 26.025 seconds:
+Computation comp1:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: white  , Active: false
+
+
+Time: 26.025 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: false
+
+
+Time: 26.025 seconds:
+Computation comp3:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: white  , Active: false
+
+
+Time: 26.253 seconds:
+Computation comp1:
+Machine machine9 holding whiteToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 26.253 seconds:
+Computation comp3:
+Machine machine9 holding whiteToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 26.468 seconds:
+Computation comp2:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: black  , Active: true
+
+Time: 27.313 seconds:
+Computation comp1:
+Machine machine8 holding blackToken
+Machine machine8:- colour: white  , Active: false
+
+Time: 27.741 seconds:
+Computation comp1:
+Machine machine7 holding blackToken
+Machine machine7:- colour: white  , Active: true
+
+Time: 28.589 seconds:
+Computation comp2:
+Machine machine10 holding blackToken
+Machine machine10:- colour: black  , Active: false
+
+
+Time: 28.589 seconds:
+Computation comp1:
+Machine machine7 holding blackToken
+Machine machine7:- colour: white  , Active: false
+
+
+Time: 28.589 seconds:
+Computation comp3:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+
+Time: 29.832 seconds:
+Computation comp1:
+Machine machine6 holding blackToken
+Machine machine6:- colour: white  , Active: false
+
+Time: 29.832 seconds:
+Computation comp2:
+Machine machine9 holding blackToken
+Machine machine9:- colour: black  , Active: false
+
+Time: 29.832 seconds:
+Computation comp3:
+Machine machine8 holding blackToken
+Machine machine8:- colour: white  , Active: false
+
+Time: 30.06 seconds:
+Computation comp3:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: true
+
+Time: 30.06 seconds:
+Computation comp1:
+Machine machine5 holding blackToken
+Machine machine5:- colour: white  , Active: false
+
+Time: 30.06 seconds:
+Computation comp2:
+Machine machine8 holding blackToken
+Machine machine8:- colour: black  , Active: false
+
+Time: 30.285 seconds:
+Computation comp2:
+Machine machine7 holding blackToken
+Machine machine7:- colour: white  , Active: false
+
+Time: 30.285 seconds:
+Computation comp1:
+Machine machine4 holding blackToken
+Machine machine4:- colour: white  , Active: false
+
+Time: 30.509 seconds:
+Computation comp2:
+Machine machine6 holding blackToken
+Machine machine6:- colour: white  , Active: true
+
+Time: 30.509 seconds:
+Computation comp1:
+Machine machine3 holding blackToken
+Machine machine3:- colour: white  , Active: false
+
+Time: 30.733 seconds:
+Computation comp1:
+Machine machine2 holding blackToken
+Machine machine2:- colour: white  , Active: false
+
+Time: 30.96 seconds:
+Computation comp1:
+Machine machine1 holding blackToken
+Machine machine1:- colour: white  , Active: false
+
+Time: 31.182 seconds:
+Computation comp1:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: false
+
+Time: 31.406 seconds:
+Computation comp1:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: white  , Active: false
+
+Time: 32.429 seconds:
+Computation comp1:
+Machine machine9 holding whiteToken
+Machine machine9:- colour: white  , Active: false
+
+Time: 32.649 seconds:
+Computation comp1:
+Machine machine8 holding whiteToken
+Machine machine8:- colour: white  , Active: false
+
+Time: 32.869 seconds:
+Computation comp2:
+Machine machine6 holding blackToken
+Machine machine6:- colour: white  , Active: false
+
+
+Time: 32.869 seconds:
+Computation comp1:
+Machine machine7 holding whiteToken
+Machine machine7:- colour: white  , Active: false
+
+Time: 32.869 seconds:
+Computation comp3:
+Machine machine7 holding blackToken
+Machine machine7:- colour: black  , Active: false
+
+
+Time: 33.097 seconds:
+Computation comp3:
+Machine machine6 holding blackToken
+Machine machine6:- colour: black  , Active: false
+
+Time: 33.097 seconds:
+Computation comp1:
+Machine machine6 holding whiteToken
+Machine machine6:- colour: white  , Active: false
+
+Time: 33.097 seconds:
+Computation comp2:
+Machine machine5 holding blackToken
+Machine machine5:- colour: white  , Active: false
+
+Time: 33.524 seconds:
+Computation comp2:
+Machine machine4 holding blackToken
+Machine machine4:- colour: white  , Active: false
+
+Time: 33.524 seconds:
+Computation comp1:
+Machine machine5 holding whiteToken
+Machine machine5:- colour: white  , Active: false
+
+Time: 33.524 seconds:
+Computation comp3:
+Machine machine5 holding blackToken
+Machine machine5:- colour: black  , Active: false
+
+Time: 34.354 seconds:
+Computation comp3:
+Machine machine4 holding blackToken
+Machine machine4:- colour: white  , Active: false
+
+Time: 34.354 seconds:
+Computation comp2:
+Machine machine3 holding blackToken
+Machine machine3:- colour: white  , Active: false
+
+Time: 34.354 seconds:
+Computation comp1:
+Machine machine4 holding whiteToken
+Machine machine4:- colour: white  , Active: false
+
+Time: 34.801 seconds:
+Computation comp2:
+Machine machine2 holding blackToken
+Machine machine2:- colour: white  , Active: false
+
+Time: 34.801 seconds:
+Computation comp1:
+Machine machine3 holding whiteToken
+Machine machine3:- colour: white  , Active: false
+
+Time: 34.801 seconds:
+Computation comp3:
+Machine machine3 holding blackToken
+Machine machine3:- colour: white  , Active: false
+
+Time: 35.232 seconds:
+Computation comp3:
+Machine machine2 holding blackToken
+Machine machine2:- colour: white  , Active: true
+
+Time: 35.232 seconds:
+Computation comp2:
+Machine machine1 holding blackToken
+Machine machine1:- colour: white  , Active: false
+
+Time: 35.232 seconds:
+Computation comp1:
+Machine machine2 holding whiteToken
+Machine machine2:- colour: white  , Active: false
+
+Time: 35.456 seconds:
+Computation comp1:
+Machine machine1 holding whiteToken
+Machine machine1:- colour: white  , Active: false
+
+Time: 35.456 seconds:
+Computation comp2:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: false
+
+Time: 35.676 seconds:
+Computation comp2:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: white  , Active: false
+
+Time: 35.676 seconds:
+Computation comp1:
+Machine machine0 holding whiteToken
+Machine machine0:- colour: white  , Active: false
+
+Computation comp1 terminated
+
+Time: 36.107 seconds:
+Computation comp2:
+Machine machine9 holding whiteToken
+Machine machine9:- colour: white  , Active: false
+
+Time: 36.322 seconds:
+Computation comp2:
+Machine machine8 holding whiteToken
+Machine machine8:- colour: white  , Active: false
+
+Time: 36.539 seconds:
+Computation comp2:
+Machine machine7 holding whiteToken
+Machine machine7:- colour: white  , Active: false
+
+Time: 36.754 seconds:
+Computation comp2:
+Machine machine6 holding whiteToken
+Machine machine6:- colour: white  , Active: false
+
+Time: 36.971 seconds:
+Computation comp2:
+Machine machine5 holding whiteToken
+Machine machine5:- colour: white  , Active: false
+
+Time: 37.187 seconds:
+Computation comp2:
+Machine machine4 holding whiteToken
+Machine machine4:- colour: white  , Active: false
+
+Time: 37.187 seconds:
+Computation comp3:
+Machine machine2 holding blackToken
+Machine machine2:- colour: black  , Active: false
+
+
+Time: 37.607 seconds:
+Computation comp2:
+Machine machine3 holding whiteToken
+Machine machine3:- colour: white  , Active: false
+
+Time: 37.607 seconds:
+Computation comp3:
+Machine machine1 holding blackToken
+Machine machine1:- colour: white  , Active: false
+
+Time: 37.822 seconds:
+Computation comp2:
+Machine machine2 holding whiteToken
+Machine machine2:- colour: white  , Active: false
+
+Time: 37.822 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: white  , Active: true
+
+Time: 38.044 seconds:
+Computation comp2:
+Machine machine1 holding whiteToken
+Machine machine1:- colour: white  , Active: false
+
+Time: 38.462 seconds:
+Computation comp2:
+Machine machine0 holding whiteToken
+Machine machine0:- colour: white  , Active: false
+
+Computation comp2 terminated
+
+Time: 39.7 seconds:
+Computation comp3:
+Machine machine0 holding blackToken
+Machine machine0:- colour: black  , Active: false
+
+
+Time: 40.111 seconds:
+Computation comp3:
+Machine machine10 holding whiteToken
+Machine machine10:- colour: white  , Active: false
+
+Time: 40.326 seconds:
+Computation comp3:
+Machine machine9 holding whiteToken
+Machine machine9:- colour: white  , Active: false
+
+Time: 40.533 seconds:
+Computation comp3:
+Machine machine8 holding whiteToken
+Machine machine8:- colour: white  , Active: false
+
+Time: 40.743 seconds:
+Computation comp3:
+Machine machine7 holding whiteToken
+Machine machine7:- colour: white  , Active: false
+
+Time: 40.95 seconds:
+Computation comp3:
+Machine machine6 holding whiteToken
+Machine machine6:- colour: white  , Active: false
+
+Time: 41.561 seconds:
+Computation comp3:
+Machine machine5 holding whiteToken
+Machine machine5:- colour: white  , Active: false
+
+Time: 41.768 seconds:
+Computation comp3:
+Machine machine4 holding whiteToken
+Machine machine4:- colour: white  , Active: false
+
+Time: 42.176 seconds:
+Computation comp3:
+Machine machine3 holding whiteToken
+Machine machine3:- colour: white  , Active: false
+
+Time: 42.388 seconds:
+Computation comp3:
+Machine machine2 holding whiteToken
+Machine machine2:- colour: white  , Active: false
+
+Time: 42.596 seconds:
+Computation comp3:
+Machine machine1 holding whiteToken
+Machine machine1:- colour: white  , Active: false
+
+Time: 42.808 seconds:
+Computation comp3:
+Machine machine0 holding whiteToken
+Machine machine0:- colour: white  , Active: false
+
+Computation comp3 terminated
+
+Global Termination
+
