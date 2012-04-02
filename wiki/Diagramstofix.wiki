@@ -2,5 +2,7 @@
 
 = Diagrams =
 
+Note: add summary and descriptions for the diagrams
+
 Passive-Active:
   * send message -> receive message
