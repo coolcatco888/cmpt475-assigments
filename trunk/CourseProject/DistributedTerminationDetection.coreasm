@@ -27,7 +27,7 @@ function sendMessageEvent : Machine * Computation -> boolean
 
 function terminated : Computation -> boolean
 
-universe Agents = {supervisorMachine, regularMachine, observer}
+universe Agents = {supervisorMachine, regularMachine}
 
 init InitRule
 
@@ -54,17 +54,9 @@ rule InitRule = seqblock
 	
 	program(supervisorMachine) := @SupervisorMachineProgram
 	program(regularMachine) := @RegularMachineProgram
-	//program(observer) := @ObserverProgram	
 	program(self) := undef
 endseqblock
 
-/*
-rule ObserverProgram = par
-	forall c in Computation with (not terminated(c)) do seqblock
-		PrintProgram(c)
-	endseqblock
-endpar
-*/
 
 rule PrintProgram(c) = seqblock
 	print "Time: " + ((now - startTime) / 1000) + " seconds:"	
@@ -95,9 +87,11 @@ rule AssignNextMachine(m) = par
 		nextMachine(m) := machine6
 	if m = machine8 then
 		nextMachine(m) := machine7
-		
+	// Add more statements here to add new machines to the network
+	
+	// Assign the last machine as machine0's nextMachine
 	if m = machine0 then
-		nextMachine(m) := machine8	
+		nextMachine(m) := machine8
 endpar
 
 
@@ -209,7 +203,6 @@ endseqblock
 
 
 rule ReportGlobalTermination = seqblock
-	//program(observer) := undef
 	program(supervisorMachine) := undef
 	program(regularMachine) := undef
 	program(self) := undef	
